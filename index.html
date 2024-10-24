@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>Hein Htet Thu</title>
+    <!-- <link rel="icon" type="image/x-icon" href="<?php echo get_template_directory_uri(); ?>/assets/favicon.ico"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+    <div class="cover-photo">
+      <img src="assets/images/cover.jpg" alt="Cover Photo" class="cover-image">
+    </div>
+    <div class="profile">
+      <div class="profile-overlay">
+        <img src="assets/images/profile.jpg" alt="Profile Photo" class="profile-photo">
+        <!--<div class="logo-overlay">-->
+        <!--    <a href="<?php echo esc_url(home_url('/')); ?>">-->
+        <!--        <img src="<?php echo $logo; ?>" alt="Profile Photo" class="company-logo">-->
+        <!--    </a>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="contact-info">
+      <h1 class="name">Hein Htet Thu @Allen
+        <!-- <img src="assets/images/blue-tick.png" alt="Verified" class="blue-tick" style="width: 20px; height: 20px; margin-left: 8px; vertical-align: middle;"> -->
+      </h1>
+      <h2 class="position">IT & Digital Specialist • Creative Mastermind</h2>
+      <h3 class="company">Yangon, Myanmar</h3>
+      <p class="bio"></p>
+    </div>
+    <div class="button-container">
+      <button class="capsule-button" onclick="saveContact()">Save Contact</button>
+      <a id="download-link" href="#" style="display: none;">Download vCard</a>
+    </div>
+    <ul class="links">
+        <li>
+            <a href="tel:+959799848334" target="_blank">
+                <div class="link-box">
+                    <img src="assets/images/phone.png" alt="Link 2">
+                    <p class="link-text">Phone</p> <!-- Add the link text here -->
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="https://wa.me/+959799848334" target="_blank">
+                <div class="link-box">
+                    <img src="assets/images/whatsapp.png" alt="Link 2">
+                    <p class="link-text">WhatsApp</p> <!-- Add the link text here -->
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="mailto:heinhtetthu@outlook.com" target="_blank">
+                <div class="link-box">
+                    <img src="assets/images/email.png" alt="Link 2">
+                    <p class="link-text">Email</p> <!-- Add the link text here -->
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/in/hein-htet-thu/" target="_blank">
+                <div class="link-box">
+                    <img src="assets/images/linkedin.png" alt="Link 2">
+                    <p class="link-text">LinkedIn</p> <!-- Add the link text here -->
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/heinhtetthu/" target="_blank">
+                <div class="link-box">
+                    <img src="assets/images/github.png" alt="Link 2">
+                    <p class="link-text">GitHub</p> <!-- Add the link text here -->
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="copyWeChatID()">
+                <div class="link-box">
+                    <img src="assets/images/wechat.png" alt="Link 2">
+                    <p class="link-text">WeChat</p> <!-- Add the link text here -->
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="https://t.me/juz_allen/" target="_blank">
+                <div class="link-box">
+                    <img src="assets/images/telegram.png" alt="Link 2">
+                    <p class="link-text">Telegram</p> <!-- Add the link text here -->
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com/@MM-TOMATOES" target="_blank">
+                <div class="link-box">
+                    <img src="assets/images/youtube.png" alt="Link 2">
+                    <p class="link-text">YouTube</p> <!-- Add the link text here -->
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="https://instagram.com/juzallen" target="_blank">
+                <div class="link-box">
+                    <img src="assets/images/instagram.png" alt="Link 2">
+                    <p class="link-text">Instagram</p> <!-- Add the link text here -->
+                </div>
+            </a>
+        </li>
+    </ul>
+  </div>
+  <script>
+    function copyWeChatID() {
+        // Define the WeChat ID
+        const weChatID = "allen_brown96";
+        
+        // Use the Clipboard API to copy the text
+        navigator.clipboard.writeText(weChatID).then(function() {
+            alert('WeChat ID copied to clipboard: ' + weChatID);
+        }, function(err) {
+            console.error('Could not copy WeChat ID: ', err);
+        });
+    }
+    function saveContact() {
+      var fullName = document.querySelector(".name").textContent.trim();
+      var firstName = fullName.split(" ")[0];
+      var lastName = fullName.split(" ").slice(1).join(" ");
+      var position = document.querySelector(".position").textContent.trim();
+      var company = document.querySelector(".company").textContent.trim();
+      // var website = document.querySelector("a[href^='https://www.javelinservices.com']").href;
+      // var facebook = document.querySelector("a[href^='https://www.facebook.com/javelinservices']").href;
+
+      var whatsappNumbers = document.querySelectorAll("a[href^='https://wa.me/']");
+      var whatsappList = [];
+      whatsappNumbers.forEach(function (number) {
+        whatsappList.push(number.href.replace("https://wa.me/", ""));
+      });
+      var whatsapp = whatsappList.join(",");
+
+      var phone = document.querySelector("a[href^='tel:']").href.replace("tel:", "");
+      var email = document.querySelector("a[href^='mailto:']").href.replace("mailto:", "");
+
+      var vcard = "BEGIN:VCARD\r\n";
+      vcard += "VERSION:3.0\r\n";
+      vcard += "N:" + lastName + ";" + firstName + ";;;\r\n";
+      vcard += "FN:" + fullName + "\r\n";
+      vcard += "TITLE:" + position + "\r\n";
+      vcard += "ORG:" + company + "\r\n";
+      vcard += "TEL;TYPE=CELL:" + phone + "\r\n";
+      vcard += "EMAIL;TYPE=WORK:" + email + "\r\n";
+      // vcard += "URL:" + website + "\r\n";
+      // vcard += "X-SOCIALPROFILE;type=facebook:" + facebook + "\r\n";
+      vcard += "X-SOCIALPROFILE;type=whatsapp:" + whatsapp + "\r\n";
+      vcard += "END:VCARD";
+
+      var blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+
+      var downloadLink = document.getElementById("download-link");
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = fullName.replace(/\s/g, '_') + ".vcf";
+
+      downloadLink.click();
+    }
+  </script>
+</body>
+</html>
